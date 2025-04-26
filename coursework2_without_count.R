@@ -64,7 +64,7 @@ heatmap_data_scaled <- as.data.frame(scale(heatmap_data))
 group_stats <- diet_gender_summary %>%
   mutate(group = paste(sex, diet_group, sep = " - "))
 
-# Extracted the unique diet groups for proper coloring.
+# Extracted the unique diet groups for proper colouring.
 diet_groups <- unique(diet_gender_summary$diet_group)
 n_diets <- length(diet_groups)
 
@@ -81,7 +81,7 @@ gender_diet_info <- data.frame(
 ) %>%
   separate(group, into = c("Gender", "Diet"), sep = " - ")
 
-# This step involved Creating custom side colors for row annotations
+# This step involved Creating custom side colours for row annotations
 row_side_colors <- data.frame(
   Gender = gender_diet_info$Gender,
   Diet = gender_diet_info$Diet,
@@ -93,10 +93,10 @@ row_side_colors <- data.frame(
 title <- "Environmental Impact Profiles by Gender and Diet Groups"
 subtitle <- "Hierarchical Clustering Analysis of Nutritional Environmental Footprints"
 
-# Got unique gender values for proper coloring
+# Got unique gender values for proper colouring
 gender_values <- unique(row_side_colors$Gender)
 
-# This step I experimented with different color palettes for gender and diet.
+# This step I experimented with different colour palettes for gender and diet.
 # Implementing gender colours.
 gender_palette <- c("#FF9AA2", "#A0D2EB")  
 names(gender_palette) <- gender_values
@@ -135,10 +135,10 @@ for (i in 1:nrow(heatmap_data_scaled)) {
   }
 }
 
-# Creating the interactive heatmap with corrected color palettes
+# Creating the interactive heatmap with corrected colour palettes
 heatmaply(
   heatmap_data_scaled,
-  # Viridis color palette for main heatmap
+  # Viridis colour palette for main heatmap
   colors = viridis(256, option = "D"), 
   
  
@@ -162,7 +162,7 @@ heatmaply(
   labRow = rownames(heatmap_data_scaled),
   labCol = colnames(heatmap_data_scaled),
   
-  # Annotations and side colors
+  # Annotations and side colours
   row_side_colors = row_side_colors,
   
   # Use the pre-computed hovertext matrix instead of a function
@@ -241,7 +241,7 @@ ggplot(age_effects, aes(x = age_group, y = diet_group, fill = mean_ghgs)) +
   geom_tile(color = "white", size = 0.5) +  
   # This step involved splitting the visualisation by gender
   facet_wrap(~sex, labeller = labeller(sex = c("female" = "Female", "male" = "Male"))) +
-  # Used the plasma color palette from viridis for better perception of values
+  # Used the plasma colour palette from viridis for better perception of values
   scale_fill_viridis_c(option = "plasma", name = "GHG Emissions") + 
   # Added a descriptive text elements to the visualisation
   labs(
